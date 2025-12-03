@@ -4,12 +4,14 @@
   "description": "Autonomous debugging pipeline",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.106.1"
+    "vscode": "^1.90.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:devforge.repairCode"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [

@@ -38,7 +38,7 @@ export class Verifier {
                 success: false,
                 stdout: result.stdout,
                 stderr: result.stderr,
-                message: `Execution failed with code ${result.exitCode}`
+                message: `Execution failed with code ${result.exitCode}. Output: ${result.stderr || result.stdout}`
             };
         }
     }

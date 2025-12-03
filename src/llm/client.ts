@@ -9,7 +9,7 @@ export class LocalLLMClient {
     private baseUrl: string;
     private model: string;
 
-    constructor(baseUrl: string = 'http://localhost:11434', model: string = 'codellama') {
+    constructor(baseUrl: string = 'http://localhost:11434', model: string = 'gemma3:1b') {
         this.baseUrl = baseUrl;
         this.model = model;
 

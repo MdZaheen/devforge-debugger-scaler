@@ -27,7 +27,7 @@ export class Runner {
             let timedOut = false;
 
             const child = cp.spawn(command, args, {
-                cwd: options.cwd || process.cwd(),
+                cwd: options.cwd || path.dirname(args[0]) || process.cwd(),
                 env: options.env || process.env,
                 stdio: ['ignore', 'pipe', 'pipe']
             });

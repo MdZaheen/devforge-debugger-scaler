@@ -20,16 +20,22 @@ Please analyze the error and provide a fix.
 Return a JSON object with the following structure:
 {
     "explanation": "A clear, concise explanation of the root cause.",
-    "diff": "A unified diff string representing the minimal fix. Start with --- original and +++ modified."
+    "patchedCode": "The complete, corrected code for the file. Do not use diffs. Return the entire file content."
 }
 `;
 
 export class PromptBuilder {
-    public static buildExplainAndPatch(filename: string, language: string, code: string, errors: string): string {
-        return EXPLAIN_AND_PATCH_TEMPLATE
+    public static buildExplainAndPatch(filename: string, language: string, code: string, errors: string, previousErrors: string = ''): string {
+        let prompt = EXPLAIN_AND_PATCH_TEMPLATE
             .replace('{filename}', filename)
             .replace('{language}', language)
             .replace('{code}', code)
             .replace('{errors}', errors);
+
+        if (previousErrors) {
+            prompt += `\n\nPREVIOUS FAILED ATTEMPTS:\n${previousErrors}\n\nIMPORTANT: The previous patches failed. Analyze the previous errors and try a different approach.`;
+        }
+
+        return prompt;
     }
 }
